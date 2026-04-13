@@ -1,13 +1,12 @@
 services:
   app:
-    image: ghcr.io/zlocate/whitelist-russia-subscription:main
+    image: ghcr.io/zlocate/whitelist-russia-subscription:cto-add-docker-ghcr-pipeline
     container_name: whitelist-russia-subscription
+    build: .
     ports:
       - "8080:8080"
-      - "6060:6060"
     volumes:
       - rjsxrd_data:/root/rjsxrd
     restart: unless-stopped
-
 volumes:
   rjsxrd_data:
