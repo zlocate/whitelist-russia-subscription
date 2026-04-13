@@ -1,0 +1,13 @@
+services:
+  app:
+    image: ghcr.io/zlocate/whitelist-russia-subscription:main
+    container_name: whitelist-russia-subscription
+    ports:
+      - "8080:8080"
+      - "6060:6060"
+    volumes:
+      - rjsxrd_data:/root/rjsxrd
+    restart: unless-stopped
+
+volumes:
+  rjsxrd_data:
