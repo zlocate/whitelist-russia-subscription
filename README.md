@@ -17,5 +17,31 @@
 
 ![alt text](qr-code.png)
 
+# Запуск и CI/CD
+
+Проект включает настроенный GitHub Actions workflow, который автоматически собирает Docker-образ и публикует его в GitHub Container Registry (ghcr.io) при пуше в ветки `main` и `testing`.
+
+Для запуска приложения через Docker используйте следующий `docker-compose.yml` (уже созданный в корне проекта):
+```yaml
+services:
+  app:
+    image: ghcr.io/zlocate/whitelist-russia-subscription:main
+    container_name: whitelist-russia-subscription
+    ports:
+      - "8080:8080"
+      - "6060:6060"
+    volumes:
+      - rjsxrd_data:/root/rjsxrd
+    restart: unless-stopped
+
+volumes:
+  rjsxrd_data:
+```
+
+Запустить приложение можно в фоновом режиме командой:
+```bash
+docker-compose up -d
+```
+
 #
 Если хотите поддержать проект или есть вопросы, напишите мне в [Telegram](https://t.me/whitelistsupport_bot)
